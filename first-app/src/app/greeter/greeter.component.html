@@ -1,0 +1,8 @@
+<h1>Greeter</h1>
+<hr>
+<label for="">User Name :</label>
+<input type="text" (keyup)="onTxtUserNameChange($event.target.value)" >
+<span>[{{userName.length}}]</span>
+<input type="button" value="Greet" (click)="onGreetClick()">
+<div>{{greetMsg}}</div>
+<hr/>
