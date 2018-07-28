@@ -9,12 +9,15 @@ export class BugTrackerComponent{
 	
 	bugs : Bug[] = [];
 
-	onCreateNewClick(newBugName : string){
+	newBugName : string = '';
+
+	onCreateNewClick(){
 		let newBug : Bug = {
-			name : newBugName,
+			name : this.newBugName,
 			isClosed : false
 		};
 		this.bugs.push(newBug);
+		this.newBugName = '';
 	}
 
 	onBugNameClick(bugToToggle : Bug){

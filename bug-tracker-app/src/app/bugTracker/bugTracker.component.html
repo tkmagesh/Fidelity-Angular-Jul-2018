@@ -14,8 +14,9 @@
 </section>
 <section class="edit">
 	<label for="">Bug Name :</label>
-	<input type="text" #txtNewBugName>
-	<input type="button" value="Create New" (click)="onCreateNewClick(txtNewBugName.value)">
+	<input type="text" [(ngModel)]="newBugName">
+	<span> [ {{newBugName.length}} ] </span>
+	<input type="button" value="Create New" (click)="onCreateNewClick()">
 </section>
 <section class="list">
 	<ol>
@@ -25,7 +26,7 @@
 				(click)="onBugNameClick(bug)"
 				[ngClass]="{closed : bug.isClosed}"
 			>
-				{{bug.name}}
+				{{bug.name | trimText}}
 			</span>
 			<div class="datetime">[Created At]</div>
 		</li>
