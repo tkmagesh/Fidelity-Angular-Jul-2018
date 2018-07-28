@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Bug } from './models/Bug';
+import { BugOperationsService } from './services/bugOperations.service';
 
 @Component({
 	selector : 'app-bug-tracker',
@@ -11,17 +12,31 @@ export class BugTrackerComponent{
 
 	newBugName : string = '';
 
+	sortBugBy : string = 'name';
+
+	sortBugDescending : boolean = false;
+	
+	/*bugOperations : BugOperationsService = null;
+
+	constructor(_bugOperations : BugOperationsService ){
+		this.bugOperations = _bugOperations;
+	}*/
+
+	constructor(private bugOperations : BugOperationsService){
+		this.bugs.push(this.bugOperations.createNew('Server communication failure'));
+		this.bugs.push(this.bugOperations.createNew('User actions not recognized'));
+		this.bugs.push(this.bugOperations.createNew('Application not responding'));
+		this.bugs.push(this.bugOperations.createNew('Data integrity checks failed'));
+	}
+
 	onCreateNewClick(){
-		let newBug : Bug = {
-			name : this.newBugName,
-			isClosed : false
-		};
+		let newBug = this.bugOperations.createNew(this.newBugName);
 		this.bugs.push(newBug);
 		this.newBugName = '';
 	}
 
 	onBugNameClick(bugToToggle : Bug){
-		bugToToggle.isClosed = !bugToToggle.isClosed;
+		this.bugOperations.toggle(bugToToggle);
 	}
 
 	onRemoveClosedClick(){
