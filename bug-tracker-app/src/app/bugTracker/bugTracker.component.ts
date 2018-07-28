@@ -18,6 +18,16 @@ export class BugTrackerComponent{
 	}
 
 	onBugNameClick(bugToToggle : Bug){
-		console.log('bug is to be toggled', bugToToggle);
+		bugToToggle.isClosed = !bugToToggle.isClosed;
 	}
+
+	onRemoveClosedClick(){
+		this.bugs = this.bugs.filter(bug => !bug.isClosed);
+	}
+
+	getClosedCount(){
+		return this.bugs.reduce((result, bug) => bug.isClosed ? ++result : result, 0);
+	}
+
+
 }
