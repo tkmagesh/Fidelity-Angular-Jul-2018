@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { CalculatorModel } from './CalculatorModel';
 
 @Component({
-	selector : 'app-calculator-1',
-	templateUrl : './calculatorOne.component.html'
+	selector : 'app-calculator-2',
+	templateUrl : './calculatorTwo.component.html'
 })
-export class CalculatorOneComponent{
+export class CalculatorTwoComponent{
 
 	model : CalculatorModel = new CalculatorModel();
+
+	operator : string = 'add';
 
 }
