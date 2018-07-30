@@ -26,11 +26,12 @@ export class BugEditComponent{
 	}
 
 	onCreateNewClick(){
-		let newBug = this.bugOperations.createNew(this.newBugName);
-		
-		/*this.bugs = [...this.bugs, newBug];*/
-		this.bugAdded.emit(newBug);
-		this.newBugName = '';
+		this.bugOperations
+			.createNew(this.newBugName)
+			.then(newBug => {
+				this.bugAdded.emit(newBug);
+				this.newBugName = '';		
+			});
 	}
 
 }
