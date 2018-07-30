@@ -10,7 +10,7 @@ export class BugTrackerComponent{
 	
 	bugs : Bug[] = [];
 
-	newBugName : string = '';
+	
 
 	sortBugBy : string = 'name';
 
@@ -20,11 +20,8 @@ export class BugTrackerComponent{
 		this.bugs = this.bugOperations.getAll();
 	}
 
-	onCreateNewClick(){
-		let newBug = this.bugOperations.createNew(this.newBugName);
-		//this.bugs.push(newBug);
+	onNewBugAdded(newBug : Bug){
 		this.bugs = [...this.bugs, newBug];
-		this.newBugName = '';
 	}
 
 	onBugNameClick(bugToToggle : Bug){
