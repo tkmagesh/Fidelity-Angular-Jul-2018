@@ -1,0 +1,26 @@
+{
+  "bugs": [
+    {
+      "id": 1,
+      "name": "Application not responding",
+      "isClosed": false,
+      "createdAt": "2018-07-06T11:23:34.939Z"
+    },
+    {
+      "id": 2,
+      "name": "User actions not recognized",
+      "isClosed": false,
+      "createdAt": "2018-07-27T06:28:27.157Z"
+    }
+  ],
+  "projects": [
+    {
+      "id": "P102",
+      "name": "Bug Tracker"
+    },
+    {
+      "id": "P101",
+      "name": "Payroll Management"
+    }
+  ]
+}

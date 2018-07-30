@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core'
 import { Bug } from '../models/Bug';
 
 @Component({
@@ -9,11 +9,18 @@ import { Bug } from '../models/Bug';
 			<span> / </span>
 			<span>{{bugs.length}}</span>
 		</section>
-	`
+		<h3>{{getCurrentTime()}}</h3>
+	`,
+	changeDetection : ChangeDetectionStrategy.OnPush
 })
 export class BugStatsComponent{
 
 	@Input('data')
 	bugs : Bug[] = [];
+
+	getCurrentTime(){
+		console.log('getCurrentTime triggered');
+		return new Date();
+	}
 
 }
