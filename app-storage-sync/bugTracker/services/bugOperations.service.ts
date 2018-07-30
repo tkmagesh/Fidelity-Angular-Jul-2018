@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Bug } from '../models/Bug';
 import { BugStorageService } from './bugStorage.service';
-import { BugServerService } from './bugServer.service';
 
 @Injectable()
 export class BugOperationsService{
 
-	constructor(private bugStorage : BugStorageService,
-		private bugServer : BugServerService){
+	constructor(private bugStorage : BugStorageService){
 
 	}
-	getAll() : Promise<Bug[]>{
-		return this.bugServer.getAll();
+	getAll() : Bug[]{
+		return this.bugStorage.getAll();
 	}
 	createNew(bugName : string) : Bug {
 		let newBugData : Bug = {

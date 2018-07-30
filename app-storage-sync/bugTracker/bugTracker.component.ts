@@ -2,11 +2,6 @@ import { Component } from '@angular/core';
 import { Bug } from './models/Bug';
 import { BugOperationsService } from './services/bugOperations.service';
 
-import axios from 'axios';
-
-console.dir(axios);
-
-
 
 
 @Component({
@@ -24,27 +19,7 @@ export class BugTrackerComponent{
 	sortBugDescending : boolean = false;
 
 	constructor(private bugOperations : BugOperationsService){
-		//this.bugs = this.bugOperations.getAll();
-
-		/*var p = axios.get('http://localhost:3000/bugs');
-
-		var p2 = p.then(function(response){
-			return response.data;
-		});
-
-		var self = this;
-
-		p2.then(function(bugs){
-			self.bugs = bugs;
-		});*/
-
-		/*var p = axios.get('http://localhost:3000/bugs');
-		var p2 = p.then(response => response.data);
-		p2.then(bugs => this.bugs = bugs);*/
-
-		this.bugOperations
-			.getAll()
-			.then(bugs => this.bugs = bugs);
+		this.bugs = this.bugOperations.getAll();
 	}
 
 	onNewBugAdded(newBug : Bug){
