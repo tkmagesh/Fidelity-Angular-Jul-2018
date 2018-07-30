@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Bug } from './models/Bug';
 import { BugOperationsService } from './services/bugOperations.service';
 
@@ -13,7 +13,7 @@ console.dir(axios);
 	selector : 'app-bug-tracker',
 	templateUrl : './bugTracker.component.html'
 })
-export class BugTrackerComponent{
+export class BugTrackerComponent implements OnInit{
 	
 	bugs : Bug[] = [];
 
@@ -24,45 +24,37 @@ export class BugTrackerComponent{
 	sortBugDescending : boolean = false;
 
 	constructor(private bugOperations : BugOperationsService){
-		//this.bugs = this.bugOperations.getAll();
+		
+	}
 
-		/*var p = axios.get('http://localhost:3000/bugs');
+	async ngOnInit(){
 
-		var p2 = p.then(function(response){
-			return response.data;
-		});
+		this.bugs = await this.bugOperations.getAll();
 
-		var self = this;
-
-		p2.then(function(bugs){
-			self.bugs = bugs;
-		});*/
-
-		/*var p = axios.get('http://localhost:3000/bugs');
-		var p2 = p.then(response => response.data);
-		p2.then(bugs => this.bugs = bugs);*/
-
-		this.bugOperations
+		/*this.bugOperations
 			.getAll()
-			.then(bugs => this.bugs = bugs);
+			.then(bugs => this.bugs = bugs);*/
 	}
 
 	onNewBugAdded(newBug : Bug){
 		this.bugs = [...this.bugs, newBug];
 	}
 
-	onBugNameClick(bugToToggle : Bug){
-		this.bugOperations
+	async onBugNameClick(bugToToggle : Bug){
+		let toggledBug = await this.bugOperations.toggle(bugToToggle);
+		this.bugs = this.bugs.map(bug => bug.id === bugToToggle.id ? toggledBug : bug);
+
+		/*this.bugOperations
 			.toggle(bugToToggle)
-			.then(toggledBug => this.bugs = this.bugs.map(bug => bug.id === bugToToggle.id ? toggledBug : bug));
+			.then(toggledBug => this.bugs = this.bugs.map(bug => bug.id === bugToToggle.id ? toggledBug : bug));*/
 	}
 
 	onRemoveClosedClick(){
 		this.bugs
 			.filter(bug => bug.isClosed)
-			.forEach(closedBug => {
-				this.bugOperations.remove(closedBug)
-					.then(_ => this.bugs = this.bugs.filter(bug => bug.id !== closedBug.id));
+			.forEach(async closedBug => {
+				await this.bugOperations.remove(closedBug)
+				this.bugs = this.bugs.filter(bug => bug.id !== closedBug.id);
 			});
 	}
 
