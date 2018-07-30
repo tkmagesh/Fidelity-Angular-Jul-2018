@@ -22,12 +22,21 @@ export class BugOperationsService{
 		return newBug;
 	}
 
-	toggle(bugToToggle : Bug) : void {
-		bugToToggle.isClosed = !bugToToggle.isClosed;
-		this.bugStorage.save(bugToToggle);
+	toggle(bugToToggle : Bug) : Bug {
+		let toggledBug = {...bugToToggle, isClosed : !bugToToggle.isClosed};
+		return this.bugStorage.save(toggledBug);
 	}
 
 	remove(bugToRemove : Bug) : void{
 		this.bugStorage.remove(bugToRemove);
 	}
 }
+
+
+
+
+
+
+
+
+

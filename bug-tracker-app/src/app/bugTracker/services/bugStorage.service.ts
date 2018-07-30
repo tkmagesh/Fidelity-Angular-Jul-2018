@@ -5,12 +5,12 @@ export class BugStorageService{
 	private currentBugId = 0;
 	private storage = window.localStorage;
 
-	save(newBugData : Bug) : Bug {
-		if (newBugData.id === 0){
-			newBugData.id = ++this.currentBugId;
+	save(bugData : Bug) : Bug {
+		if (bugData.id === 0){
+			bugData.id = ++this.currentBugId;
 		}
-		this.storage.setItem(newBugData.id.toString(), JSON.stringify(newBugData));
-		return newBugData;
+		this.storage.setItem(bugData.id.toString(), JSON.stringify(bugData));
+		return bugData;
 	}
 
 	getAll() : Bug[]{

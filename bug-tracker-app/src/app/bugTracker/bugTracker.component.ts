@@ -28,7 +28,8 @@ export class BugTrackerComponent{
 	}
 
 	onBugNameClick(bugToToggle : Bug){
-		this.bugOperations.toggle(bugToToggle);
+		let toggledBug = this.bugOperations.toggle(bugToToggle);
+		this.bugs = this.bugs.map(bug => bug.id === bugToToggle.id ? toggledBug : bug);
 	}
 
 	onRemoveClosedClick(){
