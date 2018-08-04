@@ -15,17 +15,9 @@ client.connect(function(err){
 	var db = client.db('learning');
 	var customers = db.collection('customers');
 
-	/*let insertAsync = util.promisify(customers.insert);
-	console.log(insertAsync);
-	
-	insertAsync({"name" : "Atul", "city" : "Banaswadi"})
-		.then(result => {
-			console.log(result);
-		})
-		.catch(err => {
-			console.log(err);
-		});*/
-
+	customers.insert({"name" : "xyz"}, function(err, result){
+		console.log(result);
+	});
 
 	/*customers.find({})
 		.toArray(function(err, customerDocs){

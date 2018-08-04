@@ -1,0 +1,23 @@
+<h1>Customers</h1>
+<hr>
+<section>
+  <label for="">Customer Name :</label>
+  <input type="text" #txtCustomerName >
+  <label for="">City :</label>
+  <input type="text" #txtCustomerCity >
+  <input type="button" value="Add New" (click)="onAddNewClick(txtCustomerName.value, txtCustomerCity.value)">
+</section>
+<section>
+  <table>
+    <thead>
+      <th>Name</th>
+      <th>City</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <td>{{customer.name}}</td>
+        <td>{{customer.city}}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

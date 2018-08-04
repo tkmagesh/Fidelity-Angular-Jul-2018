@@ -8,4 +8,9 @@ router.get('/', async function(req, res, next) {
   res.json(customers);
 });
 
+router.post('/', async function(req, res, next){
+	let newCustomer = await customerService.addNew(req.body);
+	res.status(201).json(newCustomer);
+});
+
 module.exports = router;
